@@ -27,8 +27,20 @@ public class Practice06Test {
 	public boolean isPalindrome(String item) {
 		clearData();
 		for (int i = 0; i < item.length(); i++) {
-			stack.push(item.substring(i, i+1));
-			queue.enqueue(item.substring(i, i+1));
+			char temp = item.charAt(i);
+			int Ascii = (int)temp;
+
+			if(Ascii >= 123 || 91 <= Ascii && Ascii <= 96 || Ascii <= 64){
+				break;
+			}
+			else if(65 <= Ascii && Ascii <= 90){
+				Ascii = Ascii + 32;
+				temp = (char)Ascii;
+			}
+			// if((item.substring(i,i+1)).matches("[^A-Za-z0-9 ]")){
+				stack.push(temp);
+				queue.enqueue(temp);
+			// }
 		}
 
 		while (! stack.empty() && ! queue.empty()) {
